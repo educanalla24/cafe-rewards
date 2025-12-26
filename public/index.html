@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Rewards</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .welcome-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .welcome-screen h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .welcome-screen p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        .role-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .role-card {
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .role-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .role-card p {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-screen">
+            <h1>☕ Café Rewards</h1>
+            <p>Sistema de fidelización para cafeterías</p>
+            <p style="font-size: 1em; margin-top: -20px;">Cada 4 cafés, obtén 1 gratis</p>
+            
+            <div class="role-selector">
+                <a href="client/" class="role-card">
+                    <h2>👤 Soy Cliente</h2>
+                    <p>Regístrate, obtén tu código QR y acumula puntos en cada compra</p>
+                </a>
+                
+                <a href="merchant/" class="role-card">
+                    <h2>🏪 Soy Comerciante</h2>
+                    <p>Escanea códigos QR de clientes y registra sus compras</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

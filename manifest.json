@@ -1,0 +1,25 @@
+{
+  "name": "Café Rewards - Programa de Fidelización",
+  "short_name": "Café Rewards",
+  "description": "App de fidelización para cafeterías - Cada 4 cafés, obtén 1 gratis",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5DC",
+  "theme_color": "#6F4E37",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

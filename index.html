@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="App de fidelización para cafeterías - Cada 4 cafés, obtén 1 gratis">
+    <title>Café Rewards - Programa de Fidelización</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6F4E37">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Café Rewards</h1>
+            <p class="subtitle">Cada 4 cafés, obtén 1 gratis</p>
+        </header>
+
+        <main>
+            <!-- Tarjeta de progreso -->
+            <div class="progress-card">
+                <div class="progress-header">
+                    <h2>Tu Progreso</h2>
+                    <span class="local-name" id="localName">Local Actual</span>
+                </div>
+                
+                <div class="progress-visual">
+                    <div class="cups-container">
+                        <div class="cup" data-cup="1">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">1</span>
+                        </div>
+                        <div class="cup" data-cup="2">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">2</span>
+                        </div>
+                        <div class="cup" data-cup="3">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">3</span>
+                        </div>
+                        <div class="cup" data-cup="4">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">4</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text">
+                            <span id="currentCups">0</span> de 4 cafés
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reward-status" id="rewardStatus">
+                    <p>¡Sigue comprando para obtener tu café gratis!</p>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="actions">
+                <button class="btn btn-primary" id="addCupBtn">
+                    ➕ Agregar Café Comprado
+                </button>
+                <button class="btn btn-secondary" id="redeemBtn" disabled>
+                    🎁 Canjear Café Gratis
+                </button>
+            </div>
+
+            <!-- Selector de local -->
+            <div class="local-selector">
+                <label for="localSelect">Seleccionar Local:</label>
+                <select id="localSelect">
+                    <option value="local1">Café Central</option>
+                    <option value="local2">Café del Barrio</option>
+                    <option value="local3">Café Express</option>
+                    <option value="local4">Otro Local</option>
+                </select>
+                <button class="btn btn-small" id="addLocalBtn">➕ Agregar Local</button>
+            </div>
+
+            <!-- Historial -->
+            <div class="history-section">
+                <h3>Historial de Compras</h3>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">No hay compras registradas aún</p>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="stats-section">
+                <h3>Estadísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalCups">0</span>
+                        <span class="stat-label">Cafés Totales</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="freeCups">0</span>
+                        <span class="stat-label">Cafés Gratis</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalLocals">0</span>
+                        <span class="stat-label">Locales Visitados</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal para agregar local -->
+        <div class="modal" id="addLocalModal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h3>Agregar Nuevo Local</h3>
+                <input type="text" id="newLocalName" placeholder="Nombre del local" maxlength="30">
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="saveLocalBtn">Guardar</button>
+                    <button class="btn btn-secondary" id="cancelLocalBtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

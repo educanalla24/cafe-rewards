@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Rewards - Cliente</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pantalla de Login/Registro -->
+        <div id="authScreen" class="screen active">
+            <header>
+                <h1>☕ Café Rewards</h1>
+                <p class="subtitle">Cada 4 cafés, obtén 1 gratis</p>
+            </header>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Iniciar Sesión</button>
+                <button class="tab-btn" data-tab="register">Registrarse</button>
+            </div>
+
+            <!-- Formulario de Login -->
+            <div id="loginForm" class="auth-form active">
+                <div class="form-card">
+                    <h2>Iniciar Sesión</h2>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    </form>
+                    <div id="loginError" class="error-message"></div>
+                </div>
+            </div>
+
+            <!-- Formulario de Registro -->
+            <div id="registerForm" class="auth-form">
+                <div class="form-card">
+                    <h2>Crear Cuenta</h2>
+                    <form id="registerFormElement">
+                        <div class="form-group">
+                            <label for="registerName">Nombre</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <input type="password" id="registerPassword" required minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                    <div id="registerError" class="error-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla Principal del Cliente -->
+        <div id="mainScreen" class="screen">
+            <header>
+                <h1>☕ Café Rewards</h1>
+                <p class="subtitle">Bienvenido, <span id="userName"></span></p>
+                <button id="logoutBtn" class="btn btn-small">Cerrar Sesión</button>
+            </header>
+
+            <!-- Tarjeta de Progreso -->
+            <div class="progress-card">
+                <div class="progress-header">
+                    <h2>Tu Progreso</h2>
+                </div>
+                
+                <div class="progress-visual">
+                    <div class="cups-container">
+                        <div class="cup" data-cup="1">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">1</span>
+                        </div>
+                        <div class="cup" data-cup="2">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">2</span>
+                        </div>
+                        <div class="cup" data-cup="3">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">3</span>
+                        </div>
+                        <div class="cup" data-cup="4">
+                            <span class="cup-icon">☕</span>
+                            <span class="cup-number">4</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text">
+                            <span id="currentCups">0</span> de 4 cafés
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reward-status" id="rewardStatus">
+                    <p>¡Sigue comprando para obtener tu café gratis!</p>
+                </div>
+            </div>
+
+            <!-- Código QR -->
+            <div class="qr-card">
+                <h3>Tu Código QR</h3>
+                <p class="qr-description">Muestra este código al comerciante para acumular puntos</p>
+                <div id="qrContainer" class="qr-container">
+                    <div class="qr-loading">Cargando QR...</div>
+                </div>
+                <button id="refreshQRBtn" class="btn btn-secondary">Actualizar QR</button>
+                
+                <!-- Código QR en texto -->
+                <div class="qr-text-section">
+                    <p class="qr-text-label">O copia este código manualmente:</p>
+                    <div class="qr-code-text-container">
+                        <input type="text" id="qrCodeText" readonly class="qr-code-text" value="">
+                        <button id="copyQRBtn" class="btn btn-small">📋 Copiar</button>
+                    </div>
+                    <p class="qr-text-hint">Si el escáner no funciona, el comerciante puede ingresar este código manualmente</p>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="stats-section">
+                <h3>Estadísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalPurchases">0</span>
+                        <span class="stat-label">Cafés Comprados</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalRewards">0</span>
+                        <span class="stat-label">Cafés Gratis</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="cafesForReward">4</span>
+                        <span class="stat-label">Faltan para Recompensa</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historial -->
+            <div class="history-section">
+                <h3>Historial de Compras</h3>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">No hay compras registradas aún</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
+
