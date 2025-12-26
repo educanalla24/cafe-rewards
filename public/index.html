@@ -187,23 +187,23 @@
 <body>
     <div class="container">
         <div class="welcome-screen">
-            <button id="settingsBtn" class="settings-btn" title="Ajustes">
+            <button id="settingsBtn" class="settings-btn" title="Settings">
                 ⚙️
             </button>
             
             <h1>☕ Café Rewards</h1>
-            <p>Sistema de fidelización para cafeterías</p>
-            <p style="font-size: 1em; margin-top: -20px;">Cada 4 cafés, obtén 1 gratis</p>
+            <p>Loyalty system for coffee shops</p>
+            <p style="font-size: 1em; margin-top: -20px;">Every 4 coffees, get 1 free</p>
             
             <div class="role-selector">
                 <a href="client/" class="role-card">
-                    <h2>👤 Soy Cliente</h2>
-                    <p>Regístrate, obtén tu código QR y acumula puntos en cada compra</p>
+                    <h2>👤 I'm a Customer</h2>
+                    <p>Sign up, get your QR code and earn points with every purchase</p>
                 </a>
                 
                 <a href="merchant/" class="role-card">
-                    <h2>🏪 Soy Comerciante</h2>
-                    <p>Escanea códigos QR de clientes y registra sus compras</p>
+                    <h2>🏪 I'm a Merchant</h2>
+                    <p>Scan customer QR codes and record their purchases</p>
                 </a>
             </div>
         </div>
@@ -213,72 +213,72 @@
     <div id="settingsModal" class="settings-modal">
         <div class="settings-modal-content">
             <div class="settings-header">
-                <h2>⚙️ Ajustes</h2>
+                <h2>⚙️ Settings</h2>
                 <button id="closeSettingsBtn" class="close-btn">&times;</button>
             </div>
             
             <div class="settings-body">
                 <div class="settings-section">
-                    <h3>Imagen de Fondo</h3>
-                    <p class="settings-description">Elige una imagen vertical desde tu galería para personalizar el fondo</p>
+                    <h3>Background Image</h3>
+                    <p class="settings-description">Choose a vertical image from your gallery to customize the background</p>
                     
                     <div class="image-preview-container">
                         <div id="imagePreview" class="image-preview">
-                            <p>Vista previa</p>
+                            <p>Preview</p>
                         </div>
                     </div>
                     
                     <input type="file" id="backgroundImageInput" accept="image/*" style="display: none;">
                     <button id="selectImageBtn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-                        📷 Elegir Imagen de la Galería
+                        📷 Choose Image from Gallery
                     </button>
                     
                     <button id="removeImageBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px; display: none;">
-                        🗑️ Quitar Imagen de Fondo
+                        🗑️ Remove Background Image
                     </button>
                 </div>
 
                 <div class="settings-section">
-                    <h3>Logo de la Compañía</h3>
-                    <p class="settings-description">Elige una imagen horizontal para el logo (aparecerá arriba del título)</p>
+                    <h3>Company Logo</h3>
+                    <p class="settings-description">Choose a horizontal image for the logo (will appear above the title)</p>
                     
                     <div class="image-preview-container">
                         <div id="logoPreview" class="logo-preview">
-                            <p>Vista previa del logo</p>
+                            <p>Logo preview</p>
                         </div>
                     </div>
                     
                     <input type="file" id="logoImageInput" accept="image/*" style="display: none;">
                     <button id="selectLogoBtn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-                        🖼️ Elegir Logo de la Galería
+                        🖼️ Choose Logo from Gallery
                     </button>
                     
                     <button id="removeLogoBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px; display: none;">
-                        🗑️ Quitar Logo
+                        🗑️ Remove Logo
                     </button>
                 </div>
 
                 <div class="settings-section">
-                    <h3>Título Personalizado</h3>
-                    <p class="settings-description">Personaliza el texto que aparece en la pantalla de clientes</p>
+                    <h3>Custom Title</h3>
+                    <p class="settings-description">Customize the text that appears on the customer screen</p>
                     
-                    <input type="text" id="customTitleInput" placeholder="Ej: Café Rewards" maxlength="50" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1em; margin-top: 10px;">
-                    <p class="settings-description" style="margin-top: 5px; font-size: 0.85em;">Deja vacío para usar el título por defecto</p>
+                    <input type="text" id="customTitleInput" placeholder="Ex: Café Rewards" maxlength="50" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1em; margin-top: 10px;">
+                    <p class="settings-description" style="margin-top: 5px; font-size: 0.85em;">Leave empty to use the default title</p>
                     
                     <button id="saveTitleBtn" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-                        💾 Guardar Título
+                        💾 Save Title
                     </button>
                 </div>
 
                 <div class="settings-section">
-                    <h3>Subtítulo Personalizado</h3>
-                    <p class="settings-description">Personaliza el subtítulo que aparece debajo del título</p>
+                    <h3>Custom Subtitle</h3>
+                    <p class="settings-description">Customize the subtitle that appears below the title</p>
                     
-                    <input type="text" id="customSubtitleInput" placeholder="Ej: Cada 4 cafés, obtén 1 gratis" maxlength="100" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1em; margin-top: 10px;">
-                    <p class="settings-description" style="margin-top: 5px; font-size: 0.85em;">Deja vacío para usar el subtítulo por defecto</p>
+                    <input type="text" id="customSubtitleInput" placeholder="Ex: Every 4 coffees, get 1 free" maxlength="100" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1em; margin-top: 10px;">
+                    <p class="settings-description" style="margin-top: 5px; font-size: 0.85em;">Leave empty to use the default subtitle</p>
                     
                     <button id="saveSubtitleBtn" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-                        💾 Guardar Subtítulo
+                        💾 Save Subtitle
                     </button>
                 </div>
             </div>

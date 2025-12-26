@@ -84,7 +84,7 @@ async function handleLogin(e) {
         const data = await response.json();
 
         if (!response.ok) {
-            errorDiv.textContent = data.error || 'Error al iniciar sesión';
+            errorDiv.textContent = data.error || 'Error signing in';
             return;
         }
 
@@ -94,7 +94,7 @@ async function handleLogin(e) {
         showMainScreen();
         loadMerchantProfile();
     } catch (error) {
-        errorDiv.textContent = 'Error de conexión. Verifica que el servidor esté corriendo.';
+        errorDiv.textContent = 'Connection error. Make sure the server is running.';
     }
 }
 
@@ -117,7 +117,7 @@ async function handleRegister(e) {
         const data = await response.json();
 
         if (!response.ok) {
-            errorDiv.textContent = data.error || 'Error al registrarse';
+            errorDiv.textContent = data.error || 'Error signing up';
             return;
         }
 
@@ -127,7 +127,7 @@ async function handleRegister(e) {
         showMainScreen();
         loadMerchantProfile();
     } catch (error) {
-        errorDiv.textContent = 'Error de conexión. Verifica que el servidor esté corriendo.';
+        errorDiv.textContent = 'Connection error. Make sure the server is running.';
     }
 }
 
@@ -176,7 +176,7 @@ async function startScanner() {
     const scanStatus = document.getElementById('scanStatus');
 
     if (!Html5Qrcode) {
-        scanStatus.textContent = 'Error: Librería QR no cargada';
+        scanStatus.textContent = 'Error: QR library not loaded';
         scanStatus.className = 'scan-status error';
         return;
     }
@@ -265,7 +265,7 @@ async function startScanner() {
     }
 
     // Si todos los intentos fallaron
-    scanStatus.textContent = 'Error: No se pudo acceder a la cámara. Verifica los permisos.';
+    scanStatus.textContent = 'Error: Could not access camera. Check permissions.';
     scanStatus.className = 'scan-status error';
     startBtn.style.display = 'inline-block';
     stopBtn.style.display = 'none';
@@ -305,7 +305,7 @@ async function handleQRScanned(qrData) {
     stopScanner();
     
     const scanStatus = document.getElementById('scanStatus');
-    scanStatus.textContent = 'Procesando...';
+            scanStatus.textContent = 'Processing...';
     scanStatus.className = 'scan-status scanning';
 
     try {
@@ -321,7 +321,7 @@ async function handleQRScanned(qrData) {
         const data = await response.json();
 
         if (!response.ok) {
-            scanStatus.textContent = data.error || 'Error escaneando QR';
+            scanStatus.textContent = data.error || 'Error scanning QR';
             scanStatus.className = 'scan-status error';
             return;
         }
@@ -330,10 +330,10 @@ async function handleQRScanned(qrData) {
         // Guardar el qr_code para futuras actualizaciones
         scannedCustomer.user.qr_code = qrData;
         displayCustomerInfo(data);
-        scanStatus.textContent = 'Cliente encontrado ✓';
+        scanStatus.textContent = 'Customer found ✓';
         scanStatus.className = 'scan-status success';
     } catch (error) {
-        scanStatus.textContent = 'Error de conexión';
+        scanStatus.textContent = 'Connection error';
         scanStatus.className = 'scan-status error';
         console.error('Error:', error);
     }
@@ -381,7 +381,7 @@ function displayCustomerInfo(data) {
 // Registrar compra
 async function registerPurchase() {
     if (!scannedCustomer) {
-        showMessage('No hay cliente escaneado', 'error');
+        showMessage('No customer scanned', 'error');
         return;
     }
 
@@ -402,13 +402,13 @@ async function registerPurchase() {
         const data = await response.json();
 
         if (!response.ok) {
-            showMessage(data.error || 'Error registrando compra', 'error');
+            showMessage(data.error || 'Error registering purchase', 'error');
             btn.disabled = false;
             btn.textContent = 'Registrar Compra';
             return;
         }
 
-        showMessage('¡Compra registrada exitosamente! ☕', 'success');
+        showMessage('Purchase registered successfully! ☕', 'success');
         
         // Actualizar información del cliente
         setTimeout(() => {
@@ -418,7 +418,7 @@ async function registerPurchase() {
         btn.disabled = false;
         btn.textContent = 'Registrar Compra';
     } catch (error) {
-        showMessage('Error de conexión', 'error');
+        showMessage('Connection error', 'error');
         btn.disabled = false;
         btn.textContent = 'Registrar Compra';
     }
@@ -427,7 +427,7 @@ async function registerPurchase() {
 // Canjear recompensa
 async function redeemReward() {
     if (!scannedCustomer) {
-        showMessage('No hay cliente escaneado', 'error');
+        showMessage('No customer scanned', 'error');
         return;
     }
 
@@ -448,13 +448,13 @@ async function redeemReward() {
         const data = await response.json();
 
         if (!response.ok) {
-            showMessage(data.error || 'Error canjeando recompensa', 'error');
+            showMessage(data.error || 'Error redeeming reward', 'error');
             btn.disabled = false;
             btn.textContent = 'Canjear Café Gratis';
             return;
         }
 
-        showMessage('¡Café gratis canjeado exitosamente! 🎉', 'success');
+        showMessage('Free coffee redeemed successfully! 🎉', 'success');
         
         // Actualizar información del cliente
         setTimeout(() => {
@@ -464,7 +464,7 @@ async function redeemReward() {
         btn.disabled = false;
         btn.textContent = 'Canjear Café Gratis';
     } catch (error) {
-        showMessage('Error de conexión', 'error');
+        showMessage('Connection error', 'error');
         btn.disabled = false;
         btn.textContent = 'Canjear Café Gratis';
     }
@@ -517,7 +517,7 @@ async function submitManualQR() {
     const qrCode = document.getElementById('manualQRInput').value.trim();
     
     if (!qrCode) {
-        showMessage('Por favor ingresa un código QR', 'error');
+        showMessage('Please enter a QR code', 'error');
         return;
     }
 

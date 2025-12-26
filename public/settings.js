@@ -130,7 +130,7 @@ function handleImageSelect(file) {
 
     // Validar que sea una imagen
     if (!file.type.startsWith('image/')) {
-        alert('Por favor, selecciona una imagen válida');
+        alert('Please select a valid image');
         return;
     }
 
@@ -159,7 +159,7 @@ function handleImageSelect(file) {
     };
     
     reader.onerror = () => {
-        alert('Error al cargar la imagen. Por favor, intenta con otra.');
+        alert('Error loading image. Please try another one.');
     };
     
     reader.readAsDataURL(file);
@@ -168,7 +168,7 @@ function handleImageSelect(file) {
 // Mostrar vista previa de la imagen
 function showImagePreview(imageData) {
     const preview = document.getElementById('imagePreview');
-    preview.innerHTML = `<img src="${imageData}" alt="Vista previa">`;
+    preview.innerHTML = `<img src="${imageData}" alt="Preview">`;
 }
 
 // Aplicar imagen de fondo
@@ -230,7 +230,7 @@ function removeBackgroundImage() {
     // Limpiar vista previa
     const preview = document.getElementById('imagePreview');
     if (preview) {
-        preview.innerHTML = '<p>Vista previa</p>';
+        preview.innerHTML = '<p>Preview</p>';
     }
     
     // Ocultar botón de quitar
@@ -242,7 +242,7 @@ function handleLogoSelect(file) {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-        alert('Por favor, selecciona una imagen válida');
+        alert('Please select a valid image');
         return;
     }
 
@@ -265,7 +265,7 @@ function handleLogoSelect(file) {
     };
     
     reader.onerror = () => {
-        alert('Error al cargar la imagen. Por favor, intenta con otra.');
+        alert('Error loading image. Please try another one.');
     };
     
     reader.readAsDataURL(file);
@@ -274,7 +274,7 @@ function handleLogoSelect(file) {
 // Mostrar vista previa del logo
 function showLogoPreview(imageData) {
     const preview = document.getElementById('logoPreview');
-    preview.innerHTML = `<img src="${imageData}" alt="Vista previa del logo">`;
+    preview.innerHTML = `<img src="${imageData}" alt="Logo preview">`;
 }
 
 // Aplicar logo personalizado
@@ -302,7 +302,7 @@ function removeCustomLogo() {
     
     const preview = document.getElementById('logoPreview');
     if (preview) {
-        preview.innerHTML = '<p>Vista previa del logo</p>';
+        preview.innerHTML = '<p>Logo preview</p>';
     }
     
     document.getElementById('removeLogoBtn').style.display = 'none';
@@ -316,11 +316,11 @@ function saveCustomTitle() {
     if (customTitle) {
         localStorage.setItem('customTitle', customTitle);
         sessionStorage.setItem('customTitle', customTitle);
-        alert('Título guardado exitosamente');
+        alert('Title saved successfully');
     } else {
         localStorage.removeItem('customTitle');
         sessionStorage.removeItem('customTitle');
-        alert('Título restaurado al predeterminado');
+        alert('Title restored to default');
     }
 }
 
@@ -340,11 +340,11 @@ function saveCustomSubtitle() {
     if (customSubtitle) {
         localStorage.setItem('customSubtitle', customSubtitle);
         sessionStorage.setItem('customSubtitle', customSubtitle);
-        alert('Subtítulo guardado exitosamente');
+        alert('Subtitle saved successfully');
     } else {
         localStorage.removeItem('customSubtitle');
         sessionStorage.removeItem('customSubtitle');
-        alert('Subtítulo restaurado al predeterminado');
+        alert('Subtitle restored to default');
     }
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Rewards - Comerciante</title>
+    <title>Café Rewards - Merchant</title>
     <link rel="stylesheet" href="../styles.css">
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
@@ -12,35 +12,35 @@
         <!-- Pantalla de Login -->
         <div id="authScreen" class="screen active">
             <header>
-                <h1>🏪 Panel Comerciante</h1>
+                <h1>🏪 Merchant Panel</h1>
                 <p class="subtitle">Café Rewards</p>
             </header>
 
             <div class="form-card">
-                <h2>Iniciar Sesión</h2>
+                <h2>Sign In</h2>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">Email</label>
                         <input type="email" id="loginEmail" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Contraseña</label>
+                        <label for="loginPassword">Password</label>
                         <input type="password" id="loginPassword" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
                 </form>
                 <div id="loginError" class="error-message"></div>
                 <div class="register-link">
-                    <p>¿No tienes cuenta? <a href="#" id="showRegister">Regístrate aquí</a></p>
+                    <p>Don't have an account? <a href="#" id="showRegister">Sign up here</a></p>
                 </div>
             </div>
 
             <!-- Formulario de Registro -->
             <div id="registerForm" class="form-card" style="display: none;">
-                <h2>Registrarse como Comerciante</h2>
+                <h2>Sign Up as Merchant</h2>
                 <form id="registerFormElement">
                     <div class="form-group">
-                        <label for="registerName">Nombre</label>
+                        <label for="registerName">Name</label>
                         <input type="text" id="registerName" required>
                     </div>
                     <div class="form-group">
@@ -48,18 +48,18 @@
                         <input type="email" id="registerEmail" required>
                     </div>
                     <div class="form-group">
-                        <label for="registerBusiness">Nombre del Negocio</label>
+                        <label for="registerBusiness">Business Name</label>
                         <input type="text" id="registerBusiness" required>
                     </div>
                     <div class="form-group">
-                        <label for="registerPassword">Contraseña</label>
+                        <label for="registerPassword">Password</label>
                         <input type="password" id="registerPassword" required minlength="6">
                     </div>
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
                 </form>
                 <div id="registerError" class="error-message"></div>
                 <div class="register-link">
-                    <p>¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión</a></p>
+                    <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
                 </div>
             </div>
         </div>
@@ -67,51 +67,51 @@
         <!-- Pantalla Principal del Comerciante -->
         <div id="mainScreen" class="screen">
             <header>
-                <h1>🏪 Panel Comerciante</h1>
-                <p class="subtitle">Bienvenido, <span id="merchantName"></span></p>
+                <h1>🏪 Merchant Panel</h1>
+                <p class="subtitle">Welcome, <span id="merchantName"></span></p>
                 <p class="business-name" id="businessName"></p>
-                <button id="logoutBtn" class="btn btn-small">Cerrar Sesión</button>
+                <button id="logoutBtn" class="btn btn-small">Sign Out</button>
             </header>
 
             <!-- Escáner QR -->
             <div class="scanner-card">
-                <h2>Escanear Código QR del Cliente</h2>
+                <h2>Scan Customer QR Code</h2>
                 <div id="qr-reader" class="qr-reader"></div>
                 <div id="scanStatus" class="scan-status"></div>
-                <button id="startScanBtn" class="btn btn-primary">Iniciar Escáner</button>
-                <button id="stopScanBtn" class="btn btn-secondary" style="display: none;">Detener Escáner</button>
+                <button id="startScanBtn" class="btn btn-primary">Start Scanner</button>
+                <button id="stopScanBtn" class="btn btn-secondary" style="display: none;">Stop Scanner</button>
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color);">
-                    <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 10px;">¿La cámara no funciona?</p>
-                    <button id="manualInputBtn" class="btn btn-secondary" style="font-size: 0.9em; padding: 10px 20px;">Ingresar Código Manualmente</button>
+                    <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 10px;">Camera not working?</p>
+                    <button id="manualInputBtn" class="btn btn-secondary" style="font-size: 0.9em; padding: 10px 20px;">Enter Code Manually</button>
                 </div>
                 <!-- Input manual (oculto por defecto) -->
                 <div id="manualInputDiv" style="display: none; margin-top: 15px;">
-                    <input type="text" id="manualQRInput" placeholder="Pega el código QR aquí" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 10px;">
-                    <button id="submitManualBtn" class="btn btn-primary" style="width: 100%;">Buscar Cliente</button>
-                    <button id="cancelManualBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">Cancelar</button>
+                    <input type="text" id="manualQRInput" placeholder="Paste QR code here" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 10px;">
+                    <button id="submitManualBtn" class="btn btn-primary" style="width: 100%;">Find Customer</button>
+                    <button id="cancelManualBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">Cancel</button>
                 </div>
             </div>
 
             <!-- Información del Cliente -->
             <div id="customerInfo" class="customer-info" style="display: none;">
-                <h3>Información del Cliente</h3>
+                <h3>Customer Information</h3>
                 <div class="customer-details">
-                    <p><strong>Nombre:</strong> <span id="customerName"></span></p>
+                    <p><strong>Name:</strong> <span id="customerName"></span></p>
                     <p><strong>Email:</strong> <span id="customerEmail"></span></p>
                 </div>
                 
                 <div class="customer-stats">
                     <div class="stat-card">
                         <span class="stat-value" id="customerPurchases">0</span>
-                        <span class="stat-label">Cafés Comprados</span>
+                        <span class="stat-label">Coffees Purchased</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-value" id="customerRewards">0</span>
-                        <span class="stat-label">Cafés Gratis</span>
+                        <span class="stat-label">Free Coffees</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-value" id="customerPoints">0</span>
-                        <span class="stat-label">Puntos Actuales</span>
+                        <span class="stat-label">Current Points</span>
                     </div>
                 </div>
 
@@ -140,19 +140,19 @@
                                 <div class="progress-fill" id="customerProgressFill"></div>
                             </div>
                             <p class="progress-text">
-                                <span id="customerCurrentCups">0</span> de 4 cafés
+                                <span id="customerCurrentCups">0</span> of 4 coffees
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="reward-status" id="customerRewardStatus" style="display: none;">
-                    <p>🎉 ¡Este cliente puede canjear un café gratis!</p>
+                    <p>🎉 This customer can redeem a free coffee!</p>
                 </div>
 
                 <div class="action-buttons">
-                    <button id="registerPurchaseBtn" class="btn btn-primary">Registrar Compra</button>
-                    <button id="redeemRewardBtn" class="btn btn-secondary" style="display: none;">Canjear Café Gratis</button>
+                    <button id="registerPurchaseBtn" class="btn btn-primary">Register Purchase</button>
+                    <button id="redeemRewardBtn" class="btn btn-secondary" style="display: none;">Redeem Free Coffee</button>
                 </div>
             </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Rewards - Cliente</title>
+    <title>Café Rewards - Customer</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -16,28 +16,28 @@
                     <img id="customLogoAuth" class="custom-logo" src="" alt="Logo">
                 </div>
                 <h1 id="customTitleAuth">☕ Café Rewards</h1>
-                <p class="subtitle" id="customSubtitleAuth">Cada 4 cafés, obtén 1 gratis</p>
+                <p class="subtitle" id="customSubtitleAuth">Every 4 coffees, get 1 free</p>
             </header>
 
             <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">Iniciar Sesión</button>
-                <button class="tab-btn" data-tab="register">Registrarse</button>
+                <button class="tab-btn active" data-tab="login">Sign In</button>
+                <button class="tab-btn" data-tab="register">Sign Up</button>
             </div>
 
             <!-- Formulario de Login -->
             <div id="loginForm" class="auth-form active">
                 <div class="form-card">
-                    <h2>Iniciar Sesión</h2>
+                    <h2>Sign In</h2>
                     <form id="loginFormElement">
                         <div class="form-group">
                             <label for="loginEmail">Email</label>
                             <input type="email" id="loginEmail" required>
                         </div>
                         <div class="form-group">
-                            <label for="loginPassword">Contraseña</label>
+                            <label for="loginPassword">Password</label>
                             <input type="password" id="loginPassword" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
                     </form>
                     <div id="loginError" class="error-message"></div>
                 </div>
@@ -46,10 +46,10 @@
             <!-- Formulario de Registro -->
             <div id="registerForm" class="auth-form">
                 <div class="form-card">
-                    <h2>Crear Cuenta</h2>
+                    <h2>Create Account</h2>
                     <form id="registerFormElement">
                         <div class="form-group">
-                            <label for="registerName">Nombre</label>
+                            <label for="registerName">Name</label>
                             <input type="text" id="registerName" required>
                         </div>
                         <div class="form-group">
@@ -57,10 +57,10 @@
                             <input type="email" id="registerEmail" required>
                         </div>
                         <div class="form-group">
-                            <label for="registerPassword">Contraseña</label>
+                            <label for="registerPassword">Password</label>
                             <input type="password" id="registerPassword" required minlength="6">
                         </div>
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
                     <div id="registerError" class="error-message"></div>
                 </div>
@@ -75,14 +75,14 @@
                     <img id="customLogo" class="custom-logo" src="" alt="Logo">
                 </div>
                 <h1 id="customTitle">☕ Café Rewards</h1>
-                <p class="subtitle">Bienvenido, <span id="userName"></span></p>
-                <button id="logoutBtn" class="btn btn-small">Cerrar Sesión</button>
+                <p class="subtitle">Welcome, <span id="userName"></span></p>
+                <button id="logoutBtn" class="btn btn-small">Sign Out</button>
             </header>
 
             <!-- Tarjeta de Progreso -->
             <div class="progress-card">
                 <div class="progress-header">
-                    <h2>Tu Progreso</h2>
+                    <h2>Your Progress</h2>
                 </div>
                 
                 <div class="progress-visual">
@@ -109,60 +109,60 @@
                             <div class="progress-fill" id="progressFill"></div>
                         </div>
                         <p class="progress-text">
-                            <span id="currentCups">0</span> de 4 cafés
+                            <span id="currentCups">0</span> of 4 coffees
                         </p>
                     </div>
                 </div>
 
                 <div class="reward-status" id="rewardStatus">
-                    <p>¡Sigue comprando para obtener tu café gratis!</p>
+                    <p>Keep buying to get your free coffee!</p>
                 </div>
             </div>
 
             <!-- Código QR -->
             <div class="qr-card">
-                <h3>Tu Código QR</h3>
-                <p class="qr-description">Muestra este código al comerciante para acumular puntos</p>
+                <h3>Your QR Code</h3>
+                <p class="qr-description">Show this code to the merchant to earn points</p>
                 <div id="qrContainer" class="qr-container">
-                    <div class="qr-loading">Cargando QR...</div>
+                    <div class="qr-loading">Loading QR...</div>
                 </div>
-                <button id="refreshQRBtn" class="btn btn-secondary">Actualizar QR</button>
+                <button id="refreshQRBtn" class="btn btn-secondary">Refresh QR</button>
                 
                 <!-- Código QR en texto -->
                 <div class="qr-text-section">
-                    <p class="qr-text-label">O copia este código manualmente:</p>
+                    <p class="qr-text-label">Or copy this code manually:</p>
                     <div class="qr-code-text-container">
                         <input type="text" id="qrCodeText" readonly class="qr-code-text" value="">
-                        <button id="copyQRBtn" class="btn btn-small">📋 Copiar</button>
+                        <button id="copyQRBtn" class="btn btn-small">📋 Copy</button>
                     </div>
-                    <p class="qr-text-hint">Si el escáner no funciona, el comerciante puede ingresar este código manualmente</p>
+                    <p class="qr-text-hint">If the scanner doesn't work, the merchant can enter this code manually</p>
                 </div>
             </div>
 
             <!-- Estadísticas -->
             <div class="stats-section">
-                <h3>Estadísticas</h3>
+                <h3>Statistics</h3>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-value" id="totalPurchases">0</span>
-                        <span class="stat-label">Cafés Comprados</span>
+                        <span class="stat-label">Coffees Purchased</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-value" id="totalRewards">0</span>
-                        <span class="stat-label">Cafés Gratis</span>
+                        <span class="stat-label">Free Coffees</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-value" id="cafesForReward">4</span>
-                        <span class="stat-label">Faltan para Recompensa</span>
+                        <span class="stat-label">Remaining for Reward</span>
                     </div>
                 </div>
             </div>
 
             <!-- Historial -->
             <div class="history-section">
-                <h3>Historial de Compras</h3>
+                <h3>Purchase History</h3>
                 <div class="history-list" id="historyList">
-                    <p class="empty-history">No hay compras registradas aún</p>
+                    <p class="empty-history">No purchases recorded yet</p>
                 </div>
             </div>
         </div>

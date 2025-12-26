@@ -89,7 +89,7 @@ function loadCustomSubtitle() {
     } else {
         // Restaurar subtítulo por defecto
         if (subtitleElement) {
-            subtitleElement.textContent = 'Cada 4 cafés, obtén 1 gratis';
+            subtitleElement.textContent = 'Every 4 coffees, get 1 free';
         }
     }
 }
@@ -149,7 +149,7 @@ async function handleLogin(e) {
         const data = await response.json();
 
         if (!response.ok) {
-            errorDiv.textContent = data.error || 'Error al iniciar sesión';
+            errorDiv.textContent = data.error || 'Error signing in';
             return;
         }
 
@@ -181,7 +181,7 @@ async function handleRegister(e) {
         const data = await response.json();
 
         if (!response.ok) {
-            errorDiv.textContent = data.error || 'Error al registrarse';
+            errorDiv.textContent = data.error || 'Error signing up';
             return;
         }
 
@@ -263,14 +263,14 @@ function updateUI(userData) {
 
     // Actualizar estado de recompensa
     const rewardStatus = document.getElementById('rewardStatus');
-    if (canRedeem) {
-        rewardStatus.classList.add('ready');
-        rewardStatus.innerHTML = '<p>🎉 ¡Tienes un café gratis disponible!</p>';
-    } else {
-        rewardStatus.classList.remove('ready');
-        const remaining = stats.cafesForReward;
-        rewardStatus.innerHTML = `<p>Faltan ${remaining} café${remaining > 1 ? 's' : ''} para tu recompensa</p>`;
-    }
+        if (canRedeem) {
+            rewardStatus.classList.add('ready');
+            rewardStatus.innerHTML = '<p>🎉 You have a free coffee available!</p>';
+        } else {
+            rewardStatus.classList.remove('ready');
+            const remaining = stats.cafesForReward;
+            rewardStatus.innerHTML = `<p>${remaining} coffee${remaining > 1 ? 's' : ''} remaining for your reward</p>`;
+        }
 
     // Actualizar estadísticas
     document.getElementById('totalPurchases').textContent = stats.totalPurchases;
@@ -300,7 +300,7 @@ async function loadQRCode() {
         // Actualizar el código QR en texto
         document.getElementById('qrCodeText').value = data.qr_data;
     } catch (error) {
-        qrContainer.innerHTML = '<div class="qr-error">Error cargando QR</div>';
+        qrContainer.innerHTML = '<div class="qr-error">Error loading QR</div>';
         console.error('Error:', error);
     }
 }
@@ -339,7 +339,7 @@ async function copyQRCode() {
                 copyBtn.style.background = '';
             }, 2000);
         } catch (err) {
-            alert('No se pudo copiar. Por favor, selecciona y copia manualmente.');
+            alert('Could not copy. Please select and copy manually.');
         }
     }
 }
@@ -356,13 +356,13 @@ async function loadHistory() {
         });
 
         if (!response.ok) {
-            throw new Error('Error cargando historial');
+            throw new Error('Error loading history');
         }
 
         const transactions = await response.json();
 
         if (transactions.length === 0) {
-            historyList.innerHTML = '<p class="empty-history">No hay compras registradas aún</p>';
+            historyList.innerHTML = '<p class="empty-history">No purchases recorded yet</p>';
             return;
         }
 
@@ -370,8 +370,8 @@ async function loadHistory() {
             const isReward = transaction.type === 'reward';
             const icon = isReward ? '🎁' : '☕';
             const text = isReward 
-                ? `Café gratis canjeado en ${transaction.business_name}`
-                : `Café comprado en ${transaction.business_name}`;
+                ? `Free coffee redeemed at ${transaction.business_name}`
+                : `Coffee purchased at ${transaction.business_name}`;
             const date = new Date(transaction.created_at).toLocaleString('es-ES', {
                 day: '2-digit',
                 month: '2-digit',
@@ -390,7 +390,7 @@ async function loadHistory() {
             `;
         }).join('');
     } catch (error) {
-        historyList.innerHTML = '<p class="empty-history">Error cargando historial</p>';
+        historyList.innerHTML = '<p class="empty-history">Error loading history</p>';
         console.error('Error:', error);
     }
 }
