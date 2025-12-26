@@ -16,6 +16,8 @@ const CAFES_POR_RECOMPENSA = 4;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// Servir archivos estáticos (después de las rutas de API)
 app.use(express.static('public'));
 
 // Inicializar base de datos
@@ -533,10 +535,25 @@ app.post('/api/merchant/redeem', authenticateToken, (req, res) => {
     );
 });
 
+// Ruta catch-all para servir el frontend (SPA)
+// Debe ir después de todas las rutas de API
+app.get('*', (req, res) => {
+    // Si es una ruta de API, devolver 404
+    if (req.path.startsWith('/api')) {
+        return res.status(404).json({ error: 'Ruta API no encontrada' });
+    }
+    // Para rutas del frontend, servir index.html
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Iniciar servidor
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-    console.log(`Accede desde otros dispositivos en la red usando tu IP local`);
-    console.log(`Ejemplo: http://192.168.1.147:${PORT}`);
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+    console.log(`Entorno: ${process.env.NODE_ENV || 'development'}`);
+    if (process.env.NODE_ENV === 'production') {
+        console.log(`Aplicación desplegada en producción`);
+    } else {
+        console.log(`Accede desde: http://localhost:${PORT}`);
+    }
 });
 

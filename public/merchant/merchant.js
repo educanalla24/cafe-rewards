@@ -1,5 +1,14 @@
 // Detectar la URL base automáticamente
-const API_URL = `${window.location.protocol}//${window.location.hostname}:${window.location.port || 3000}/api`;
+// En producción (Render), window.location.port puede estar vacío
+const getApiUrl = () => {
+    const port = window.location.port;
+    if (port) {
+        return `${window.location.protocol}//${window.location.hostname}:${port}/api`;
+    }
+    // Sin puerto (producción con HTTPS/HTTP estándar)
+    return `${window.location.protocol}//${window.location.hostname}/api`;
+};
+const API_URL = getApiUrl();
 
 // Estado de la aplicación
 let authToken = null;
