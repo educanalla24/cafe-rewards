@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadBackgroundImage();
     loadCustomLogo();
     loadCustomTitle();
+    loadCustomSubtitle();
     setupSettingsListeners();
 });
 
@@ -101,6 +102,26 @@ function setupSettingsListeners() {
             }
         });
     }
+
+    // Subtítulo personalizado
+    const saveSubtitleBtn = document.getElementById('saveSubtitleBtn');
+    const customSubtitleInput = document.getElementById('customSubtitleInput');
+
+    if (saveSubtitleBtn) {
+        saveSubtitleBtn.addEventListener('click', () => {
+            saveCustomSubtitle();
+        });
+    }
+
+    if (customSubtitleInput) {
+        // Cargar subtítulo guardado al abrir el modal
+        settingsBtn.addEventListener('click', () => {
+            const savedSubtitle = localStorage.getItem('customSubtitle');
+            if (savedSubtitle) {
+                customSubtitleInput.value = savedSubtitle;
+            }
+        });
+    }
 }
 
 // Manejar selección de imagen
@@ -160,6 +181,13 @@ function applyBackgroundImage(imageData) {
     document.body.style.backgroundAttachment = 'fixed';
     document.body.classList.add('has-custom-bg');
     
+    // También aplicar al html para asegurar que cubra todo
+    document.documentElement.style.backgroundImage = `url(${imageData})`;
+    document.documentElement.style.backgroundSize = 'cover';
+    document.documentElement.style.backgroundPosition = 'center';
+    document.documentElement.style.backgroundRepeat = 'no-repeat';
+    document.documentElement.style.backgroundAttachment = 'fixed';
+    
     // Guardar en sessionStorage para que otras páginas puedan acceder
     sessionStorage.setItem('customBackgroundImage', imageData);
 }
@@ -191,6 +219,13 @@ function removeBackgroundImage() {
     document.body.style.backgroundRepeat = '';
     document.body.style.backgroundAttachment = '';
     document.body.classList.remove('has-custom-bg');
+    
+    // Limpiar también del html
+    document.documentElement.style.backgroundImage = '';
+    document.documentElement.style.backgroundSize = '';
+    document.documentElement.style.backgroundPosition = '';
+    document.documentElement.style.backgroundRepeat = '';
+    document.documentElement.style.backgroundAttachment = '';
     
     // Limpiar vista previa
     const preview = document.getElementById('imagePreview');
@@ -294,6 +329,30 @@ function loadCustomTitle() {
     const savedTitle = localStorage.getItem('customTitle');
     if (savedTitle) {
         sessionStorage.setItem('customTitle', savedTitle);
+    }
+}
+
+// Guardar subtítulo personalizado
+function saveCustomSubtitle() {
+    const subtitleInput = document.getElementById('customSubtitleInput');
+    const customSubtitle = subtitleInput.value.trim();
+    
+    if (customSubtitle) {
+        localStorage.setItem('customSubtitle', customSubtitle);
+        sessionStorage.setItem('customSubtitle', customSubtitle);
+        alert('Subtítulo guardado exitosamente');
+    } else {
+        localStorage.removeItem('customSubtitle');
+        sessionStorage.removeItem('customSubtitle');
+        alert('Subtítulo restaurado al predeterminado');
+    }
+}
+
+// Cargar subtítulo personalizado
+function loadCustomSubtitle() {
+    const savedSubtitle = localStorage.getItem('customSubtitle');
+    if (savedSubtitle) {
+        sessionStorage.setItem('customSubtitle', savedSubtitle);
     }
 }
 

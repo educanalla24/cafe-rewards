@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar personalizaciones
     loadCustomLogo();
     loadCustomTitle();
+    loadCustomSubtitle();
     
     // Verificar si hay token guardado
     authToken = localStorage.getItem('authToken');
@@ -72,6 +73,23 @@ function loadCustomTitle() {
         }
         if (titleAuthElement) {
             titleAuthElement.textContent = '☕ Café Rewards';
+        }
+    }
+}
+
+// Cargar subtítulo personalizado
+function loadCustomSubtitle() {
+    const savedSubtitle = localStorage.getItem('customSubtitle');
+    const subtitleElement = document.getElementById('customSubtitleAuth');
+    
+    if (savedSubtitle) {
+        if (subtitleElement) {
+            subtitleElement.textContent = savedSubtitle;
+        }
+    } else {
+        // Restaurar subtítulo por defecto
+        if (subtitleElement) {
+            subtitleElement.textContent = 'Cada 4 cafés, obtén 1 gratis';
         }
     }
 }

@@ -173,6 +173,13 @@
                 document.body.style.backgroundRepeat = 'no-repeat';
                 document.body.style.backgroundAttachment = 'fixed';
                 document.body.classList.add('has-custom-bg');
+                
+                // También aplicar al html para asegurar que cubra todo al hacer scroll
+                document.documentElement.style.backgroundImage = `url(${savedImage})`;
+                document.documentElement.style.backgroundSize = 'cover';
+                document.documentElement.style.backgroundPosition = 'center';
+                document.documentElement.style.backgroundRepeat = 'no-repeat';
+                document.documentElement.style.backgroundAttachment = 'fixed';
             }
         });
     </script>
