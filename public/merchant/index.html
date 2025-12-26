@@ -163,7 +163,7 @@
 
     <script src="merchant.js"></script>
     <script>
-        // Cargar imagen de fondo personalizada
+        // Cargar imagen de fondo personalizada con efecto overscroll
         document.addEventListener('DOMContentLoaded', () => {
             const savedImage = localStorage.getItem('customBackgroundImage');
             if (savedImage) {
@@ -174,12 +174,19 @@
                 document.body.style.backgroundAttachment = 'fixed';
                 document.body.classList.add('has-custom-bg');
                 
-                // También aplicar al html para asegurar que cubra todo al hacer scroll
-                document.documentElement.style.backgroundImage = `url(${savedImage})`;
-                document.documentElement.style.backgroundSize = 'cover';
-                document.documentElement.style.backgroundPosition = 'center';
-                document.documentElement.style.backgroundRepeat = 'no-repeat';
-                document.documentElement.style.backgroundAttachment = 'fixed';
+                // Aplicar también al pseudo-elemento ::after para el efecto de overscroll
+                const style = document.createElement('style');
+                style.id = 'custom-bg-style';
+                style.textContent = `
+                    body.has-custom-bg::after {
+                        background-image: url(${savedImage}) !important;
+                        background-size: cover !important;
+                        background-position: center !important;
+                        background-repeat: no-repeat !important;
+                        background-attachment: fixed !important;
+                    }
+                `;
+                document.head.appendChild(style);
             }
         });
     </script>

@@ -181,12 +181,26 @@ function applyBackgroundImage(imageData) {
     document.body.style.backgroundAttachment = 'fixed';
     document.body.classList.add('has-custom-bg');
     
-    // También aplicar al html para asegurar que cubra todo
-    document.documentElement.style.backgroundImage = `url(${imageData})`;
-    document.documentElement.style.backgroundSize = 'cover';
-    document.documentElement.style.backgroundPosition = 'center';
-    document.documentElement.style.backgroundRepeat = 'no-repeat';
-    document.documentElement.style.backgroundAttachment = 'fixed';
+    // Aplicar también al pseudo-elemento ::after para el efecto de overscroll
+    const style = document.createElement('style');
+    style.id = 'custom-bg-style';
+    style.textContent = `
+        body.has-custom-bg::after {
+            background-image: url(${imageData}) !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+        }
+    `;
+    
+    // Remover estilo anterior si existe
+    const oldStyle = document.getElementById('custom-bg-style');
+    if (oldStyle) {
+        oldStyle.remove();
+    }
+    
+    document.head.appendChild(style);
     
     // Guardar en sessionStorage para que otras páginas puedan acceder
     sessionStorage.setItem('customBackgroundImage', imageData);
@@ -220,12 +234,11 @@ function removeBackgroundImage() {
     document.body.style.backgroundAttachment = '';
     document.body.classList.remove('has-custom-bg');
     
-    // Limpiar también del html
-    document.documentElement.style.backgroundImage = '';
-    document.documentElement.style.backgroundSize = '';
-    document.documentElement.style.backgroundPosition = '';
-    document.documentElement.style.backgroundRepeat = '';
-    document.documentElement.style.backgroundAttachment = '';
+    // Remover estilo personalizado
+    const customStyle = document.getElementById('custom-bg-style');
+    if (customStyle) {
+        customStyle.remove();
+    }
     
     // Limpiar vista previa
     const preview = document.getElementById('imagePreview');
