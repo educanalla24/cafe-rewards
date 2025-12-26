@@ -11,7 +11,11 @@
         <!-- Pantalla de Login/Registro -->
         <div id="authScreen" class="screen active">
             <header>
-                <h1>☕ Café Rewards</h1>
+                <!-- Logo personalizable -->
+                <div id="customLogoContainerAuth" class="custom-logo-container" style="display: none;">
+                    <img id="customLogoAuth" class="custom-logo" src="" alt="Logo">
+                </div>
+                <h1 id="customTitleAuth">☕ Café Rewards</h1>
                 <p class="subtitle">Cada 4 cafés, obtén 1 gratis</p>
             </header>
 
@@ -66,7 +70,11 @@
         <!-- Pantalla Principal del Cliente -->
         <div id="mainScreen" class="screen">
             <header>
-                <h1>☕ Café Rewards</h1>
+                <!-- Logo personalizable -->
+                <div id="customLogoContainer" class="custom-logo-container" style="display: none;">
+                    <img id="customLogo" class="custom-logo" src="" alt="Logo">
+                </div>
+                <h1 id="customTitle">☕ Café Rewards</h1>
                 <p class="subtitle">Bienvenido, <span id="userName"></span></p>
                 <button id="logoutBtn" class="btn btn-small">Cerrar Sesión</button>
             </header>

@@ -3,6 +3,8 @@
 // Cargar imagen de fondo guardada al iniciar
 document.addEventListener('DOMContentLoaded', () => {
     loadBackgroundImage();
+    loadCustomLogo();
+    loadCustomTitle();
     setupSettingsListeners();
 });
 
@@ -54,6 +56,49 @@ function setupSettingsListeners() {
     if (removeImageBtn) {
         removeImageBtn.addEventListener('click', () => {
             removeBackgroundImage();
+        });
+    }
+
+    // Logo
+    const selectLogoBtn = document.getElementById('selectLogoBtn');
+    const logoImageInput = document.getElementById('logoImageInput');
+    const removeLogoBtn = document.getElementById('removeLogoBtn');
+
+    if (selectLogoBtn) {
+        selectLogoBtn.addEventListener('click', () => {
+            logoImageInput.click();
+        });
+    }
+
+    if (logoImageInput) {
+        logoImageInput.addEventListener('change', (e) => {
+            handleLogoSelect(e.target.files[0]);
+        });
+    }
+
+    if (removeLogoBtn) {
+        removeLogoBtn.addEventListener('click', () => {
+            removeCustomLogo();
+        });
+    }
+
+    // Título personalizado
+    const saveTitleBtn = document.getElementById('saveTitleBtn');
+    const customTitleInput = document.getElementById('customTitleInput');
+
+    if (saveTitleBtn) {
+        saveTitleBtn.addEventListener('click', () => {
+            saveCustomTitle();
+        });
+    }
+
+    if (customTitleInput) {
+        // Cargar título guardado al abrir el modal
+        settingsBtn.addEventListener('click', () => {
+            const savedTitle = localStorage.getItem('customTitle');
+            if (savedTitle) {
+                customTitleInput.value = savedTitle;
+            }
         });
     }
 }
@@ -155,5 +200,100 @@ function removeBackgroundImage() {
     
     // Ocultar botón de quitar
     document.getElementById('removeImageBtn').style.display = 'none';
+}
+
+// Manejar selección de logo
+function handleLogoSelect(file) {
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Por favor, selecciona una imagen válida');
+        return;
+    }
+
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+        const imageData = e.target.result;
+        
+        // Mostrar vista previa
+        showLogoPreview(imageData);
+        
+        // Guardar en localStorage
+        localStorage.setItem('customLogo', imageData);
+        
+        // Aplicar logo
+        applyCustomLogo(imageData);
+        
+        // Mostrar botón de quitar
+        document.getElementById('removeLogoBtn').style.display = 'block';
+    };
+    
+    reader.onerror = () => {
+        alert('Error al cargar la imagen. Por favor, intenta con otra.');
+    };
+    
+    reader.readAsDataURL(file);
+}
+
+// Mostrar vista previa del logo
+function showLogoPreview(imageData) {
+    const preview = document.getElementById('logoPreview');
+    preview.innerHTML = `<img src="${imageData}" alt="Vista previa del logo">`;
+}
+
+// Aplicar logo personalizado
+function applyCustomLogo(imageData) {
+    // Guardar en sessionStorage para otras páginas
+    sessionStorage.setItem('customLogo', imageData);
+}
+
+// Cargar logo personalizado
+function loadCustomLogo() {
+    const savedLogo = localStorage.getItem('customLogo');
+    if (savedLogo) {
+        const preview = document.getElementById('logoPreview');
+        if (preview) {
+            showLogoPreview(savedLogo);
+            document.getElementById('removeLogoBtn').style.display = 'block';
+        }
+    }
+}
+
+// Quitar logo personalizado
+function removeCustomLogo() {
+    localStorage.removeItem('customLogo');
+    sessionStorage.removeItem('customLogo');
+    
+    const preview = document.getElementById('logoPreview');
+    if (preview) {
+        preview.innerHTML = '<p>Vista previa del logo</p>';
+    }
+    
+    document.getElementById('removeLogoBtn').style.display = 'none';
+}
+
+// Guardar título personalizado
+function saveCustomTitle() {
+    const titleInput = document.getElementById('customTitleInput');
+    const customTitle = titleInput.value.trim();
+    
+    if (customTitle) {
+        localStorage.setItem('customTitle', customTitle);
+        sessionStorage.setItem('customTitle', customTitle);
+        alert('Título guardado exitosamente');
+    } else {
+        localStorage.removeItem('customTitle');
+        sessionStorage.removeItem('customTitle');
+        alert('Título restaurado al predeterminado');
+    }
+}
+
+// Cargar título personalizado
+function loadCustomTitle() {
+    const savedTitle = localStorage.getItem('customTitle');
+    if (savedTitle) {
+        sessionStorage.setItem('customTitle', savedTitle);
+    }
 }
 

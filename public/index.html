@@ -161,6 +161,27 @@
             color: var(--text-secondary);
             font-style: italic;
         }
+        .logo-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #F9F9F9;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .logo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .logo-preview p {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -214,6 +235,38 @@
                     
                     <button id="removeImageBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px; display: none;">
                         🗑️ Quitar Imagen de Fondo
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Logo de la Compañía</h3>
+                    <p class="settings-description">Elige una imagen horizontal para el logo (aparecerá arriba del título)</p>
+                    
+                    <div class="image-preview-container">
+                        <div id="logoPreview" class="logo-preview">
+                            <p>Vista previa del logo</p>
+                        </div>
+                    </div>
+                    
+                    <input type="file" id="logoImageInput" accept="image/*" style="display: none;">
+                    <button id="selectLogoBtn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                        🖼️ Elegir Logo de la Galería
+                    </button>
+                    
+                    <button id="removeLogoBtn" class="btn btn-secondary" style="width: 100%; margin-top: 10px; display: none;">
+                        🗑️ Quitar Logo
+                    </button>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Título Personalizado</h3>
+                    <p class="settings-description">Personaliza el texto que aparece en la pantalla de clientes</p>
+                    
+                    <input type="text" id="customTitleInput" placeholder="Ej: Café Rewards" maxlength="50" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1em; margin-top: 10px;">
+                    <p class="settings-description" style="margin-top: 5px; font-size: 0.85em;">Deja vacío para usar el título por defecto</p>
+                    
+                    <button id="saveTitleBtn" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        💾 Guardar Título
                     </button>
                 </div>
             </div>

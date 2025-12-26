@@ -16,6 +16,10 @@ let authToken = null;
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
+    // Cargar personalizaciones
+    loadCustomLogo();
+    loadCustomTitle();
+    
     // Verificar si hay token guardado
     authToken = localStorage.getItem('authToken');
     if (authToken) {
@@ -26,6 +30,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupEventListeners();
 });
+
+// Cargar logo personalizado
+function loadCustomLogo() {
+    const savedLogo = localStorage.getItem('customLogo');
+    if (savedLogo) {
+        const logoContainer = document.getElementById('customLogoContainer');
+        const logoAuthContainer = document.getElementById('customLogoContainerAuth');
+        const logoImg = document.getElementById('customLogo');
+        const logoAuthImg = document.getElementById('customLogoAuth');
+        
+        if (logoContainer && logoImg) {
+            logoContainer.style.display = 'block';
+            logoImg.src = savedLogo;
+        }
+        
+        if (logoAuthContainer && logoAuthImg) {
+            logoAuthContainer.style.display = 'block';
+            logoAuthImg.src = savedLogo;
+        }
+    }
+}
+
+// Cargar título personalizado
+function loadCustomTitle() {
+    const savedTitle = localStorage.getItem('customTitle');
+    const titleElement = document.getElementById('customTitle');
+    const titleAuthElement = document.getElementById('customTitleAuth');
+    
+    if (savedTitle) {
+        if (titleElement) {
+            titleElement.textContent = savedTitle;
+        }
+        if (titleAuthElement) {
+            titleAuthElement.textContent = savedTitle;
+        }
+    } else {
+        // Restaurar título por defecto
+        if (titleElement) {
+            titleElement.textContent = '☕ Café Rewards';
+        }
+        if (titleAuthElement) {
+            titleAuthElement.textContent = '☕ Café Rewards';
+        }
+    }
+}
 
 // Configurar event listeners
 function setupEventListeners() {
