@@ -244,7 +244,7 @@ async function startScanner() {
             // Si llegamos aquí, la cámara se inició correctamente
             startBtn.style.display = 'none';
             stopBtn.style.display = 'inline-block';
-            scanStatus.textContent = 'Escaneando... Apunta al código QR';
+            scanStatus.textContent = 'Scanning... Point at QR code';
             scanStatus.className = 'scan-status scanning';
             return; // Salir si funciona
             
@@ -387,7 +387,7 @@ async function registerPurchase() {
 
     const btn = document.getElementById('registerPurchaseBtn');
     btn.disabled = true;
-    btn.textContent = 'Registrando...';
+    btn.textContent = 'Registering...';
 
     try {
         const response = await fetch(`${API_URL}/merchant/purchase`, {
@@ -404,7 +404,7 @@ async function registerPurchase() {
         if (!response.ok) {
             showMessage(data.error || 'Error registering purchase', 'error');
             btn.disabled = false;
-            btn.textContent = 'Registrar Compra';
+            btn.textContent = 'Register Purchase';
             return;
         }
 
@@ -433,7 +433,7 @@ async function redeemReward() {
 
     const btn = document.getElementById('redeemRewardBtn');
     btn.disabled = true;
-    btn.textContent = 'Canjeando...';
+        btn.textContent = 'Redeeming...';
 
     try {
         const response = await fetch(`${API_URL}/merchant/redeem`, {
@@ -450,7 +450,7 @@ async function redeemReward() {
         if (!response.ok) {
             showMessage(data.error || 'Error redeeming reward', 'error');
             btn.disabled = false;
-            btn.textContent = 'Canjear Café Gratis';
+            btn.textContent = 'Redeem Free Coffee';
             return;
         }
 
