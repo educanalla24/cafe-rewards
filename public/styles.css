@@ -28,22 +28,9 @@ body {
     transition: background-image 0.3s ease;
 }
 
-/* Overlay para mejorar legibilidad cuando hay imagen de fondo */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(245, 245, 220, 0.85);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Cuando hay imagen personalizada, reducir opacidad del overlay */
+/* Sin overlay cuando hay imagen personalizada - imagen sin sombra */
 body.has-custom-bg::before {
-    background: rgba(245, 245, 220, 0.7);
+    display: none;
 }
 
 .container {
