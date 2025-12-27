@@ -360,12 +360,7 @@ app.get('/api/user/history', authenticateToken, async (req, res) => {
     try {
         const { data: transactions, error } = await supabase
             .from('transactions')
-            .select(`
-                *,
-                merchants!transactions_merchant_id_fkey (
-                    business_name
-                )
-            `)
+            .select('*')
             .eq('user_id', req.user.id)
             .order('created_at', { ascending: false })
             .limit(50);
@@ -373,6 +368,25 @@ app.get('/api/user/history', authenticateToken, async (req, res) => {
         if (error) {
             console.error('History query error:', error);
             return res.status(500).json({ error: 'Error getting history' });
+        }
+
+        // Obtener nombres de negocios para cada transacción
+        const merchantIds = [...new Set(transactions.map(t => t.merchant_id))];
+        const { data: merchants, error: merchantsError } = await supabase
+            .from('merchants')
+            .select('id, business_name')
+            .in('id', merchantIds);
+
+        if (merchantsError) {
+            console.error('Merchants query error:', merchantsError);
+        }
+
+        // Crear un mapa de merchant_id -> business_name
+        const merchantMap = {};
+        if (merchants) {
+            merchants.forEach(m => {
+                merchantMap[m.id] = m.business_name;
+            });
         }
 
         // Formatear datos para mantener compatibilidad
@@ -383,7 +397,7 @@ app.get('/api/user/history', authenticateToken, async (req, res) => {
             type: t.type,
             points: t.points,
             created_at: t.created_at,
-            business_name: t.merchants?.business_name || 'Unknown'
+            business_name: merchantMap[t.merchant_id] || 'Unknown'
         }));
 
         res.json(formattedTransactions);
